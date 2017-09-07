@@ -1,0 +1,76 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+
+                <div class="profile-element" uib-dropdown ng-show="role">
+                    <img alt="image" class="img-circle" src="img/profile_small.jpg"/>
+                    <a uib-dropdown-toggle href>
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <strong class="font-bold">{{name}}</strong>
+                             </span>
+                                <span class="text-muted text-xs block" ng-if="role=='super-admin'">Super Admin </span>
+                                <span class="text-muted text-xs block" ng-if="role=='admin'">Company Admin </span>
+                                <span class="text-muted text-xs block" ng-if="role=='employee'">Company Employee </span>
+                            </span>
+                    </a>
+                    <ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
+                        <li><a ui-sref="app.profile">Profile</a></li>
+                        <li><a ui-sref="app.contacts">Contacts</a></li>
+                        <li><a ui-sref="mailbox.inbox">Mailbox</a></li>
+                        <li class="divider"></li>
+                        <li><a ng-click="logout()">Logout</a></li>
+                    </ul>
+                </div>
+                <!-- <div class="profile-element" style="margin-top: 20px;" ng-show="locations">
+                    <select ng-options="value.id as value.name for (key , value) in locations" ng-model="selectedLocation" ng-change="selectLocation(selectedLocation)" class="form-control" ng-disabled="locations.length < 2">
+                    </select>
+                </div> -->
+                <div class="profile-element" uib-dropdown style="margin-top: 20px;" ng-if="locations && size(locations) > 1">
+                    <a uib-dropdown-toggle href>
+                        <span class="clear">
+                            <span class="text-muted text-xs block">Location: <i>{{ locations[selectedLocation].name }}</i> <b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
+                        <li ng-repeat="location in locations"><a ng-click="selectLocation(location.id)">{{location.name}}</a></li>
+                    </ul>
+                </div>
+                <div class="profile-element" style="margin-top: 20px;" ng-if="locations && size(locations) < 2">
+                    <span class="clear">
+                        <span class="text-muted text-xs block">Location: <i>{{ locations[selectedLocation].name }}</i> </span>
+                    </span>
+                </div>
+                <div class="logo-element">
+                    IN+
+                </div>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.dashboard"><i class="fa fa-tachometer"></i> <span class="nav-label">{{ 'DASHBOARD' | translate }}</span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.sessions"><i class="fa fa-hourglass-start"></i> <span class="nav-label">{{ 'SESSIONS' | translate }}</span> </a>
+            </li>
+            <li ng-class="{active: $state.includes('app.customers') || $state.includes('app.customer') || $state.includes('app.create-customer') || $state.includes('app.edit-customer')}">
+                <a ui-sref="app.customers"><i class="fa fa-users"></i> <span class="nav-label">{{ 'CUSTOMERS' | translate }}</span> </a>
+            </li>
+            <li class="configurations" ng-class="{active: $state.includes('app.games') || $state.includes('app.games-grid') || $state.includes('app.create-game') || $state.includes('app.game') || $state.includes('app.edit-game')}" style="display: none;">
+                <a ui-sref="app.games"><i class="fa fa-gamepad"></i> <span class="nav-label">{{ 'GAMES' | translate }}</span></a>
+            </li>
+            <li class="configurations" ui-sref-active="active" style="display: none;">
+                <a ui-sref="app.locations"><i class="fa fa-location-arrow"></i> <span class="nav-label">{{ 'LOCATIONS' | translate }}</span> </a>
+            </li>
+            <li ng-class="{active: $state.includes('app.stations') || $state.includes('app.station-details')}">
+                <a ui-sref="app.stations"><i class="fa fa-map"></i> <span class="nav-label">{{ 'STATIONS' | translate }}</span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.purchases"><i class="fa fa-file-powerpoint-o"></i> <span class="nav-label">{{ 'PURCHASES' | translate }}</span> </a>
+            </li>
+            <li ui-sref-active="active" style="display: none;" class="users">
+                <a ui-sref="app.users"><i class="fa fa-user"></i> <span class="nav-label">{{ 'Users' }}</span> </a>
+            </li>
+        </ul>
+
+    </div>
+</nav>

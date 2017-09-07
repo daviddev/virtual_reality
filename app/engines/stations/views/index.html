@@ -1,0 +1,91 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Stations list</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="app.dashboard">Home</a>
+            </li>
+            <li class="active">
+                <strong>Stations list</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="wrapper wrapper-content animated fadeInUp">
+
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>All projects assigned to this account</h5>
+
+                    <div class="ibox-tools" ng-if="role!='employee'">
+                        <a ng-click="addStation()" class="btn btn-primary btn-xs">Create new station</a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row m-b-sm m-t-sm">
+                        <div class="col-md-1">
+                            <button type="button" ng-click="refresh()" id="loading-example-btn" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> Refresh</button>
+                        </div>
+                        <div class="col-md-11">
+                            <div class="input-group" style="width: 100%"><input type="text" ng-model="search" placeholder="Search" class="input-sm form-control"></div>
+                        </div>
+                    </div>
+
+                    <div class="project-list">
+
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                            <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Name</th>
+                                <th>Location Name</th>
+                                <th>Type</th>
+                                <th>Customer</th>
+                                <th class="text-right" data-sort-ignore="true">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="station in stations | filter:search" ng-if="selectedLocation==station.location.id">
+                                    <td>
+                                        <span class="label label-primary" ng-if="station.customer_id">Assigned</span>
+                                        <span class="label label-default" ng-if="!station.customer_id">Unassigned</span>
+                                    </td>
+                                    <td>
+                                        <a ui-sref="app.station-details({station:station.id})">{{station.name}}</a>
+                                        <br/>
+                                        <small ng-if="station.created_at">Created {{ station.created_at | amDateFormat:'MM/DD/YYYY HH:mm'}}</small>
+                                    </td>
+                                    <td>
+                                        {{station.location.name}}
+                                    </td>
+                                    <td>
+                                        {{station.type}}
+                                    </td>
+                                    <td ng-if="station.customer_id">
+                                        <a ui-sref="app.customer({customer: station.customer.id})">{{station.customer.first_name}} {{station.customer.last_name}}</a>
+                                    </td>
+                                    <td style="text-align: left;" ng-if="!station.customer_id">
+                                        -
+                                    </td>
+                                    <td class="text-right">
+                                        <a ui-sref="app.station-details({station:station.id})" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
+                                        <a ng-if="role!='employee'" ng-click="editStation(station.id)" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<fieldset>
+    <h2>Purchase Credits</h2>
+
+    <div class="row">
+        <div class="col-lg-6" style="padding: 30px">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Walk Ins</label>
+                <div class="col-sm-9">
+                    <button type="button" ng-class="{'currentCredit': selectedCredit==1}" ng-click="selectCredit(1)" class="btn btn-sm btn-default col-sm-3" style="margin: 0px 10px" type="submit">15 Minutes</button>
+                    <button type="button" ng-class="{'currentCredit': selectedCredit==2}" ng-click="selectCredit(2)" class="btn btn-sm btn-white col-sm-3" style="margin: 0px 10px" type="submit">30 Minutes</button>
+                    <button type="button" ng-class="{'currentCredit': selectedCredit==3}" ng-click="selectCredit(3)" class="btn btn-sm btn-white col-sm-3" style="margin: 0px 10px" type="submit">60 Minutes</button>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">VR Party</label>
+                <div class="col-sm-9">
+                    <button type="button" ng-class="{'currentCredit': selectedCredit==4}" ng-click="selectCredit(4)" class="btn btn-sm btn-white col-sm-3" style="margin: 0px 10px" type="submit">15 Minutes</button>
+                    <button type="button" ng-class="{'currentCredit': selectedCredit==5}" ng-click="selectCredit(5)" class="btn btn-sm btn-white col-sm-3" style="margin: 0px 10px" type="submit">30 Minutes</button>
+                    <button type="button" ng-class="{'currentCredit': selectedCredit==6}" ng-click="selectCredit(6)" class="btn btn-sm btn-white col-sm-3" style="margin: 0px 10px" type="submit">60 Minutes</button>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Split Party</label>
+                <div class="col-sm-9">
+                    <button type="button" ng-class="{'currentCredit': selectedCredit==7}" ng-click="selectCredit(7)" class="btn btn-sm btn-white col-sm-3" style="margin: 0px 10px" type="submit">15 Minutes</button>
+                    <button type="button" ng-class="{'currentCredit': selectedCredit==8}" ng-click="selectCredit(8)" class="btn btn-sm btn-white col-sm-3" style="margin: 0px 10px" type="submit">30 Minutes</button>
+                    <button type="button" ng-class="{'currentCredit': selectedCredit==9}" ng-click="selectCredit(9)" class="btn btn-sm btn-white col-sm-3" style="margin: 0px 10px" type="submit">60 Minutes</button>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label"></label>
+                <div class="col-sm-9">
+                    <input id="otherDuration" ng-model="credit.duration_other" type="text" style="margin: 0px 10px" class="form-control" placeholder="Enter duration" ng-change="otherDuration()">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            <div class="form-group col-lg-12">
+                <label>Source</label>
+                <input id="source" ng-model="credit.source" type="text" class="form-control" readonly>
+            </div>
+            <div class="form-group col-lg-12">
+                <label>Duration</label>
+                <input id="address" type="text" ng-model="credit.duration" class="form-control" readonly>
+            </div>
+            <div class="form-group col-lg-12">
+                <label>Purchase Price</label>
+                <input id="address" type="text" ng-model="credit.purchase_price" class="form-control required" readonly>
+            </div>
+        </div>
+    </div>
+    <a ng-click="stepOne()" class="btn btn-default">Previous</a>
+    <a ng-click="stepThree()" class="btn btn-primary">Next</a>
+</fieldset>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.required').click(function(){
+            $(this).attr('style', '');
+        })
+    })
+</script>

@@ -1,0 +1,20 @@
+<div class="inmodal">
+    <div class="modal-header">
+        <h4 class="modal-title">Select Customer</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <form class="form-horizontal">
+                <label class="control-label col-sm-2" >Customer</label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="selected" uib-typeahead="customer as customer.name for customer in customers | filter:$viewValue | limitTo:8" class="form-control">
+                </div> 
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" ng-click="cancel()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="ok()">Save</button>
+    </div>
+</div>
+

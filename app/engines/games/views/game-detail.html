@@ -1,0 +1,97 @@
+<style type="text/css">
+    video {
+        width: 100% !important;
+        height: auto !important;
+    }
+</style>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Game detail</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="app.dashboard">Home</a>
+            </li>
+            <li class="active">
+                <a ui-sref="app.games">Games</a>
+            </li>
+            <li class="active">
+                <strong>Game detail</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="ibox product-detail">
+                <div class="ibox-content">
+
+                    <div class="row">
+                        <div class="col-md-5">
+
+
+                            <slick dots="true">
+                                <div>
+                                    <div class="image-imitation">
+                                        <img ng-src="{{game.thumbnail}}" width="100%" height="100%">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="image-imitation">
+                                        <figure responsive-video>
+                                            <video controls>
+                                                <source src="{{trustSrc(game.video)}}">
+                                                Your browser does not support HTML5 video.
+                                            </video>
+                                        </figure>
+                                    </div>
+                                </div>
+                            </slick>
+
+                        </div>
+                        <div class="col-md-7">
+
+                            <h2 class="font-bold m-b-xs">
+                                {{game.name}}
+                            </h2>
+                            <small>{{game.developer}}</small>
+                            <!-- <div class="m-t-md">
+                                <h2 class="product-main-price">$406,602 <small class="text-muted">Exclude Tax</small> </h2>
+                            </div> -->
+                            <hr>
+
+                            <h4>Game description</h4>
+
+                            <div class="small text-muted" ng-bind-html="trustAsHtml(game.description)">
+                            </div>
+                            <dl class="small m-t-md">
+                                <dt ng-if="game.session.length">Number of sessions</dt>
+                                <dd>{{game.session.length}}</dd>
+                                <dt ng-if="game.release_date">Release date</dt>
+                                <dd>{{game.release_date | amDateFormat:'MM/DD/YYYY' }}</dd>
+                            </dl>
+                            <hr>
+
+                            <div>
+                                Disable <input type="checkbox" ng-change="changeStatus(game.enabled)" class="js-switch" ui-switch="{color:'#1AB394'}" ng-model="game.enabled"/> Enable
+                                <br>
+                                <br>
+                                <div class="btn-group">
+                                    <!-- <button class="btn btn-primary btn-sm"><i class="fa fa-cart-plus"></i> Add to cart</button> -->
+                                    <button class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> Contact with author </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="ibox-footer" style="text-align: right">
+                        Last Update <i class="fa fa-clock-o"></i> <span am-time-ago="game.updated_at"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

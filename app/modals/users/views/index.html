@@ -1,0 +1,76 @@
+<div class="inmodal">
+    <div class="modal-header">
+        <h4 ng-if="editableUser.id != undefined" class="modal-title">Edit user</h4>
+        <h4 ng-if="editableUser.id == undefined" class="modal-title">Create user</h4>
+    </div>
+        <form class="form-horizontal" ng-submit="submit()">
+        <div class="modal-body">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Name:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Enter name" ng-model="editableUser.name" required>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Email:</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" placeholder="Enter email" ng-model="editableUser.email" required>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Password:</label>
+                    <div class="col-sm-10"> 
+                        <input ng-if="editableUser.id == undefined" type="password" class="form-control" placeholder="Enter password" ng-model="editableUser.password" required>
+                        <input ng-if="editableUser.id != undefined" type="password" class="form-control" placeholder="Enter password" ng-model="editableUser.password">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Role:</label>
+                    <div class="col-sm-10"> 
+                        <select class="form-control" placeholder="Select role" ng-model="editableUser.role">
+                            <option value="super-admin">Super Admin</option>
+                            <option value="admin">Admin</option>
+                            <option value="employee">Employee</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="hr-line-dashed" ng-show="editableUser.role != 'super-admin'"></div>
+                <div class="form-group" ng-show="editableUser.role == 'employee'">
+                    <label class="control-label col-sm-2" for="pwd">Location:</label>
+                    <div class="col-sm-10"> 
+                        <select class="form-control" placeholder="Select location" ng-model="editableUser.location_id">
+                            <option ng-repeat="location in locations" value="{{ location.id }}">
+                                {{ location.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="editableUser.role == 'admin'">
+                    <label class="control-label col-sm-2" for="pwd">Companies:</label>
+                    <div class="col-sm-10">
+                        <select ui-select2 multiple="multiple" class="" placeholder="Select company" ng-model="editableUser.companies">
+                            <option ng-repeat="company in companies" value="{{ company.id }}">
+                                {{ company.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" ng-click="cancel()">Close</button>
+            <button ng-if="editableUser.id != undefined" type="submit" class="btn btn-primary">Update</button>
+            <button ng-if="editableUser.id == undefined" type="submit" class="btn btn-primary">Save</button>
+        </div>
+        </form>  
+</div>
+<style type="text/css">
+    .select2-container {
+        width: 100%;
+    }
+    .select2-container-multi.select2-container-active {
+        border-color: #1ab394!important;
+    }
+</style>

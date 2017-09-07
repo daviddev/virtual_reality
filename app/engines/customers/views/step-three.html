@@ -1,0 +1,26 @@
+<fieldset>
+    <h2>Assign Station</h2>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Station</label>
+                <div class="col-sm-10">
+                    <select class="form-control" ng-model="station.station_id">
+                        <option value="">Select station</option>
+                        <option ng-repeat="station in stations" value="{{station.id}}">{{station.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="m-t-md">
+    <a ng-click="stepThree()" class="btn btn-default">Previous</a>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</fieldset>
+<script type="text/javascript">
+	$('.required').on('change', function () {
+            $(this).attr('style', '');
+        })
+</script>

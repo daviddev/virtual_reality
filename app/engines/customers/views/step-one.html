@@ -1,0 +1,80 @@
+<fieldset>
+    <h2>Customer</h2>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">First Name</label>
+                <div class="col-sm-10"><input type="text" name="first_name" ng-model="customer.first_name" placeholder="Enter first name" class="form-control required"></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Last Name</label>
+                <div class="col-sm-10"><input type="text" name="last_name" ng-model="customer.last_name" placeholder="Enter last name" class="form-control required"></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10"><input type="email" name="email" ng-model="customer.email" placeholder="Enter email" class="form-control required" ></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Sex</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="sex" ng-model="customer.sex">
+                        <option value="">Select sex</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Date of birth</label>
+                <div class="col-sm-10 input-group date" style="padding-right: 15px; padding-left: 15px;"><input type="datetime" ng-model="customer.date_of_birth" class="form-control datetime" date-time view="year" auto-close="true" min-view="date" format="YYYY-MM-DD" placeholder="Select date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Address 1</label>
+                <div class="col-sm-10"><input type="text" name="address1" ng-model="address.address1" placeholder="Enter address 1" class="form-control"></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Address 2</label>
+                <div class="col-sm-10"><input type="text" name="address2" ng-model="address.address2" placeholder="Enter address 2" class="form-control"></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">City</label>
+                <div class="col-sm-10"><input type="text" name="city" ng-model="address.city" placeholder="Enter city" class="form-control"></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Province</label>
+                <div class="col-sm-10"><input type="text" name="province" ng-model="address.province" placeholder="Enter province" class="form-control"></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Country</label>
+                <div class="col-sm-10"><input type="text" name="country" ng-model="address.country" placeholder="Enter country" class="form-control"></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Zip</label>
+                <div class="col-sm-10"><input type="text" name="zip" ng-model="address.zip" placeholder="Enter zip" class="form-control"></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Phone</label>
+                <div class="col-sm-10"><input type="number" name="phone" ng-model="address.phone" placeholder="Enter phone" class="form-control"></div>
+            </div>
+        </div>
+    </div>
+    <a ng-click="stepTwo()" class="btn btn-primary">Next</a>
+</fieldset>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.datetime').val('');
+    })
+</script>

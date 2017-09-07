@@ -1,0 +1,373 @@
+<style type="text/css">
+    .editable{
+        background-color: #a3f9b9;
+    }
+    textarea { resize: vertical; }
+
+    #addCredits {
+        margin-top: 20px;
+    }
+</style>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Customer Detail</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="app.dashboard">Home</a>
+            </li>
+            <li>
+                <a ui-sref="app.customers">Customers</a>
+            </li>
+            <li class="active">
+                <strong>Customer Detail</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+        <button class="btn btn-primary btn-xs" id="addCredits" ng-click="addCredits()">Add Credits</button>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+
+
+    <div class="row m-b-lg m-t-lg">
+        <div class="col-md-4">
+
+            <div class="profile-image">
+                <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
+            </div>
+            <div class="profile-info">
+                <div class="">
+                    <div>
+                        <h2 class="no-margins">
+                            {{customer.first_name}} {{customer.last_name}}
+                        </h2>
+                        <br>
+                        <h4>Note <small style="cursor: pointer;" ng-click="editNote=true">&lt;edit&gt;</small></h4>
+                        <small ng-click="editNote=true" ng-show="!editNote">
+                            {{ customer.note }}
+                        </small>
+                        <textarea ng-show="editNote" class="form-control" ng-blur="editNoteSubmit()" ng-model="customer.note"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <table class="table small m-b-xs">
+                <tbody>
+                <tr>
+                    <td>
+                        <strong>{{ customer.sessions.length }}</strong> Number of Game Sessions
+                    </td>
+                    <td>
+                        <strong>{{ customer.totalUsed }}</strong> Total Play Time
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <strong>{{ customer.totalAvailable }}</strong> Remaining Credits (time)
+                    </td>
+                    <td>
+                        <strong>{{ customer.totalPurchase }}</strong> Total Revenue earned from customer
+                    </td>
+                </tr>
+                <tr ng-show="customer.lastSession.created_at">
+                    <td>
+                        <strong>{{ customer.lastSession.created_at | amDateFormat:'MM/DD/YYYY HH:mm'}}</strong> Most recent session date time
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-3">
+            <small>Sessions in the past 12 months</small>
+            <h2 class="no-margins">{{ customer.lastSessions.length }}</h2>
+            <div sparkline spark-data="sparkline2" spark-options="sparkline2Options"></div>
+        </div>
+
+
+    </div>
+    <div class="row">
+
+        <div class="col-lg-3">
+
+            <div class="ibox" ng-show="favoriteGame.name">
+                <div class="ibox-content">
+                    <h3>Favorite Game</h3>
+                    <h4>
+                        <img ng-src="{{favoriteGame.icon}}" class="img-circle circle-border m-b-md" alt="profile" style="margin: 0">
+                        {{favoriteGame.name}}
+                    </h4>
+
+                    <p class="small">
+                        {{favoriteGame.description}}
+                    </p>
+
+                    <p class="small">
+                        <b>Duration:</b> {{favoriteGame.duration}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>Membership</h3>
+                    <p class="small">
+                        <b>Company:</b> {{customer.location.company.name}}
+                    </p>
+                    <p class="small">
+                        <b>Location:</b> {{customer.location.name}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>Personal friends</h3>
+                    <ul class="list-unstyled file-list">
+                        <li><a href=""><i class="fa fa-file"></i> Project_document.docx</a></li>
+                        <li><a href=""><i class="fa fa-file-picture-o"></i> Logo_zender_company.jpg</a></li>
+                        <li><a href=""><i class="fa fa-stack-exchange"></i> Email_from_Alex.mln</a></li>
+                        <li><a href=""><i class="fa fa-file"></i> Contract_20_11_2014.docx</a></li>
+                        <li><a href=""><i class="fa fa-file-powerpoint-o"></i> Presentation.pptx</a></li>
+                        <li><a href=""><i class="fa fa-file"></i> 10_08_2015.docx</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>Private message</h3>
+
+                    <p class="small">
+                        Send private message to Alex Smith
+                    </p>
+
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="email" class="form-control" placeholder="Message subject">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea class="form-control" placeholder="Your message" rows="3"></textarea>
+                    </div>
+                    <button class="btn btn-primary btn-block">Send</button>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-5">
+
+            <div class="social-feed-box">
+
+                <div class="pull-right social-action" uib-dropdown>
+                    <button class="btn-white" uib-dropdown-toggle>
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="m-t-xs" uib-dropdown-menu>
+                        <li><a href="#">Config</a></li>
+                    </ul>
+                </div>
+                <div class="social-avatar">
+                    <a href="" class="pull-left">
+                        <img alt="image" src="img/a1.jpg">
+                    </a>
+                    <div class="media-body">
+                        <a href="#">
+                            Andrew Williams
+                        </a>
+                        <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                    </div>
+                </div>
+                <div class="social-body">
+                    <p>
+                        Many desktop publishing packages and web page editors now use Lorem Ipsum as their
+                        default model text, and a search for 'lorem ipsum' will uncover many web sites still
+                        in their infancy. Packages and web page editors now use Lorem Ipsum as their
+                        default model text.
+                    </p>
+
+                    <div class="btn-group">
+                        <button class="btn btn-white btn-xs"><i class="fa fa-thumbs-up"></i> Like this!</button>
+                        <button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> Comment</button>
+                        <button class="btn btn-white btn-xs"><i class="fa fa-share"></i> Share</button>
+                    </div>
+                </div>
+                <div class="social-footer">
+                    <div class="social-comment">
+                        <a href="" class="pull-left">
+                            <img alt="image" src="img/a1.jpg">
+                        </a>
+                        <div class="media-body">
+                            <a href="#">
+                                Andrew Williams
+                            </a>
+                            Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.
+                            <br/>
+                            <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 26 Like this!</a> -
+                            <small class="text-muted">12.06.2014</small>
+                        </div>
+                    </div>
+
+                    <div class="social-comment">
+                        <a href="" class="pull-left">
+                            <img alt="image" src="img/a2.jpg">
+                        </a>
+                        <div class="media-body">
+                            <a href="#">
+                                Andrew Williams
+                            </a>
+                            Making this the first true generator on the Internet. It uses a dictionary of.
+                            <br/>
+                            <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
+                            <small class="text-muted">10.07.2014</small>
+                        </div>
+                    </div>
+
+                    <div class="social-comment">
+                        <a href="" class="pull-left">
+                            <img alt="image" src="img/a3.jpg">
+                        </a>
+                        <div class="media-body">
+                            <textarea class="form-control" placeholder="Write comment..."></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="social-feed-box">
+
+                <div class="pull-right social-action" uib-dropdown>
+                    <button class="btn-white" uib-dropdown-toggle>
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="m-t-xs" uib-dropdown-menu>
+                        <li><a href="#">Config</a></li>
+                    </ul>
+                </div>
+                <div class="social-avatar">
+                    <a href="" class="pull-left">
+                        <img alt="image" src="img/a6.jpg">
+                    </a>
+                    <div class="media-body">
+                        <a href="#">
+                            Andrew Williams
+                        </a>
+                        <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                    </div>
+                </div>
+                <div class="social-body">
+                    <p>
+                        Many desktop publishing packages and web page editors now use Lorem Ipsum as their
+                        default model text, and a search for 'lorem ipsum' will uncover many web sites still
+                        in their infancy. Packages and web page editors now use Lorem Ipsum as their
+                        default model text.
+                    </p>
+                    <p>
+                        Lorem Ipsum as their
+                        default model text, and a search for 'lorem ipsum' will uncover many web sites still
+                        in their infancy. Packages and web page editors now use Lorem Ipsum as their
+                        default model text.
+                    </p>
+                    <img src="img/gallery/3.jpg" class="img-responsive">
+                    <div class="btn-group">
+                        <button class="btn btn-white btn-xs"><i class="fa fa-thumbs-up"></i> Like this!</button>
+                        <button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> Comment</button>
+                        <button class="btn btn-white btn-xs"><i class="fa fa-share"></i> Share</button>
+                    </div>
+                </div>
+                <div class="social-footer">
+                    <div class="social-comment">
+                        <a href="" class="pull-left">
+                            <img alt="image" src="img/a1.jpg">
+                        </a>
+                        <div class="media-body">
+                            <a href="#">
+                                Andrew Williams
+                            </a>
+                            Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.
+                            <br/>
+                            <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 26 Like this!</a> -
+                            <small class="text-muted">12.06.2014</small>
+                        </div>
+                    </div>
+
+                    <div class="social-comment">
+                        <a href="" class="pull-left">
+                            <img alt="image" src="img/a2.jpg">
+                        </a>
+                        <div class="media-body">
+                            <a href="#">
+                                Andrew Williams
+                            </a>
+                            Making this the first true generator on the Internet. It uses a dictionary of.
+                            <br/>
+                            <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
+                            <small class="text-muted">10.07.2014</small>
+                        </div>
+                    </div>
+
+                    <div class="social-comment">
+                        <a href="" class="pull-left">
+                            <img alt="image" src="img/a8.jpg">
+                        </a>
+                        <div class="media-body">
+                            <a href="#">
+                                Andrew Williams
+                            </a>
+                            Making this the first true generator on the Internet. It uses a dictionary of.
+                            <br/>
+                            <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
+                            <small class="text-muted">10.07.2014</small>
+                        </div>
+                    </div>
+
+                    <div class="social-comment">
+                        <a href="" class="pull-left">
+                            <img alt="image" src="img/a3.jpg">
+                        </a>
+                        <div class="media-body">
+                            <textarea class="form-control" placeholder="Write comment..."></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+        <div class="col-lg-4 m-b-lg">
+            <div id="vertical-timeline" class="vertical-container light-timeline no-margins">
+                <div class="vertical-timeline-block" ng-repeat="session in customer.sessions | limitTo:limit">
+                    <div class="vertical-timeline-icon navy-bg">
+                        <i class="fa fa-gamepad"></i>
+                    </div>
+
+                    <div class="vertical-timeline-content">
+                        <h2>Game Session</h2>
+                        <p>{{ session.game.name }}</p>
+                        <p>Duration: {{ session.duration }}</p>
+                        <span class="vertical-date">
+                            <small am-time-ago="session.start_datetime"></small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px" ng-show="limit < customer.sessions.length">
+                <a ng-click="loadMore()" style="color: #1ab394 !important">Load More</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>

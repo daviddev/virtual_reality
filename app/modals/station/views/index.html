@@ -1,0 +1,55 @@
+<div class="inmodal">
+    <div class="modal-header">
+        <h4 class="modal-title" ng-if="action=='add'">Create New Station</h4>
+        <h4 class="modal-title" ng-if="action!='add'">Edit New Station</h4>
+    </div>
+    <form ng-submit="ok()" class="form-horizontal">
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="control-label col-sm-2">Name</label> 
+            <div class="col-md-10">    
+                <input type="text" ng-model="station.name" placeholder="Enter station name" class="form-control" required>
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Type</label> 
+            <div class="col-md-10">
+                <select class="form-control" ng-model="station.type" required>
+                    <option value="">Select type</option>
+                    <option value="social-room">Social room</option>
+                    <option value="standing">Standing</option>
+                    <option value="simulator">Simulator</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Equipment serial</label> 
+            <div class="col-md-10">
+                <input type="text" ng-model="station.equipment_serial" placeholder="Enter equipment serial" class="form-control">
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Width</label> 
+            <div class="col-md-10">
+                <input type="number" ng-model="station.width" placeholder="Enter width" class="form-control">
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Depth</label> 
+            <div class="col-md-10">
+                <input type="number" ng-model="station.depth" placeholder="Enter depth" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" ng-click="cancel()">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+    </form>
+</div>
+

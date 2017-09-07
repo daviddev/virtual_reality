@@ -1,0 +1,84 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Games</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="app.dashboard">Home</a>
+            </li>
+            <li class="active">
+                <strong>Games</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2" style="text-align: center; margin-top: 30px;">
+        <i ui-sref="app.games" class="fa fa-list fa-2x" aria-hidden="true" style="cursor: pointer; margin-right: 5px;"></i>
+        <i ui-sref="app.games-grid" class="fa fa-table fa-2x" aria-hidden="true" style="cursor: pointer; color: #1ab394"></i>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox-title">
+        <div class="ibox-tools">
+            <a ui-sref="app.create-game" class="btn btn-primary btn-xs">Add game</a>
+        </div>
+    </div>
+    <div class="ibox-content m-b-sm border-bottom">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label" for="product_name">Name</label>
+                    <input type="text" id="name" ng-model="search.name" placeholder="Name" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="control-label" for="price">Developer</label>
+                    <input type="text" id="developer" ng-model="search.developer" placeholder="Developer" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="control-label" for="quantity">Steam id</label>
+                    <input type="text" id="steam_id" ng-model="search.steam_id" placeholder="Steam id" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label" for="status">Status</label>
+                    <select ng-model="search.enabled" id="status" class="form-control">
+                        <option value="">Select status</option>
+                        <option value="1">Enabled</option>
+                        <option value="0">Disabled</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3" ng-repeat="game in games | filter:search">
+            <div class="ibox">
+                <div class="ibox-content product-box">
+
+                    <div class="product-imitation" style="padding: 0">
+                        <img ng-src="{{game.thumbnail}}" width="100%" height="100px">
+                    </div>
+                    <div class="product-desc" style="height: 169px">
+                        <span class="product-price">
+                            {{game.session.length}} <small>sessions</small>
+                        </span>
+                        <small class="text-muted">{{game.developer}}</small>
+
+                        <a ui-sref="app.game({game:game.id})" ng-if="game.name.length <= 20" class="product-name"> {{game.name}}</a>
+                        <a ui-sref="app.game({game:game.id})" ng-if="game.name.length > 20" class="product-name"> {{game.name.substring(0, 20)}}...</a>
+
+                        <div class="small m-t-xs" ng-bind-html="trustAsHtml(game.description)" style="height: 45px; overflow: auto">
+                        </div>
+                        <div class="m-t text-righ">
+
+                            <a ui-sref="app.game({game:game.id})" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

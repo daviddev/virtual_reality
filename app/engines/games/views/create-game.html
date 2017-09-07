@@ -1,0 +1,153 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2 ng-if="action == 'add'">Create game</h2>
+        <h2 ng-if="action != 'add'">Edit game</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="app.dashboard">Home</a>
+            </li>
+            <li class="active">
+                <a ui-sref="app.games">Games</a>
+            </li>
+            <li class="active">
+                <strong ng-if="action == 'add'">Create game</strong>
+                <strong ng-if="action != 'add'">Edit game</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="tabs-container">
+                <uib-tabset>
+                    <uib-tab>
+                        <uib-tab-heading>
+                            Product info
+                        </uib-tab-heading>
+                        <div class="panel-body">
+
+                            <fieldset class="form-horizontal">
+                            <form id="gameForm" ng-submit="createGame()">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Name:</label>
+                                    <div class="col-sm-10"><input ng-model="game.name" type="text" class="form-control" placeholder="Enter name" required></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Developer:</label>
+                                    <div class="col-sm-10"><input ng-model="game.developer" type="text" class="form-control" placeholder="Enter game developer"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Description:</label>
+                                    <div class="col-sm-10">
+                                        <div summernote class="summernote"  ng-model="game.description">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Release date:</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group date">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input type="datetime" name="date_of_birth" ng-model="game.release_date" class="form-control required datetime" date-time view="date" auto-close="true" min-view="date" format="YYYY-MM-DD" placeholder="Select release date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Steam ID:</label>
+                                    <div class="col-sm-10"><input type="number" ng-model="game.steam_id" class="form-control" placeholder="Enter steam id"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Local path:</label>
+                                    <div class="col-sm-10"><input type="text" ng-model="game.local_path" class="form-control" placeholder="C:\Program Files (x86)\Steam\steamapps\common\The Lab\TheLab\win64\TheLab.exe"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Enabled:</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group date">
+                                            <input type="checkbox" ng-change="changeStatus(game.enabled)" class="js-switch" ui-switch="{color:'#1AB394'}" ng-model="game.enabled"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <fieldset class="m-t-md pull-right">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </fieldset>
+                            </form>
+                            </fieldset>
+
+                        </div>
+                    </uib-tab>
+                    <uib-tab>
+                        <uib-tab-heading>
+                            Images
+                        </uib-tab-heading>
+                        <div class="panel-body">
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-stripped">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            Image name
+                                        </th>
+                                        <th>
+                                            Image url
+                                        </th>
+                                        <th>
+                                            Image preview
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Icon</strong>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" ng-model="game.icon" placeholder="Enter icon url">
+                                        </td>
+                                        <td>
+                                            <img ng-src="{{game.icon}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Thumbnail</strong>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" ng-model="game.thumbnail" placeholder="Enter thumbnail url">
+                                        </td>
+                                        <td>
+                                            <img ng-src="{{game.thumbnail}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Video</strong>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" ng-model="game.video" placeholder="Enter video url">
+                                        </td>
+                                        <td>
+                                            <video id="player" controls style="height: 200px">
+                                                <source ng-src="{{videoPath}}">
+                                                Your browser does not support HTML5 video.
+                                            </video>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </uib-tab>
+                </uib-tabset>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

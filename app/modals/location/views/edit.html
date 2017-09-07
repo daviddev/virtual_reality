@@ -1,0 +1,87 @@
+<div class="inmodal">
+    <div class="modal-header">
+        <h4 class="modal-title">Edit Location</h4>
+    </div>
+    <form ng-submit="ok()" class="form-horizontal">
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="control-label col-sm-2">Name</label> 
+            <div class="col-md-10">
+                <input type="text" ng-model="location.name" placeholder="Enter location name" class="form-control" required>
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Company</label> 
+            <div class="col-md-10">
+                <select type="text" ng-model="location.company_id" placeholder="Select company" class="form-control" required>
+                    <option value="">Select company</option>
+                    <option ng-repeat="company in companies" value="{{company.id}}">{{ company.name }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Description</label> 
+            <div class="col-md-10">
+                <textarea ng-model="location.description" placeholder="Enter description" class="form-control" style="resize: vertical;">
+                </textarea>
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Address 1</label> 
+            <div class="col-md-10">
+                <input type="text" ng-model="location.address1" placeholder="Enter address 1" class="form-control">
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Address 2</label> 
+            <div class="col-md-10">
+                <input type="text" ng-model="location.address2" placeholder="Enter address 2" class="form-control">
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">City</label> 
+            <div class="col-md-10">
+                <input type="text" ng-model="location.city" placeholder="Enter city" class="form-control">
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Phone</label> 
+            <div class="col-md-10">
+                <input type="text" ng-model="location.phone" placeholder="Enter phone" class="form-control">
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Province</label> 
+            <div class="col-md-10">
+                <input type="text" ng-model="location.province" placeholder="Enter province" class="form-control">
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Country</label> 
+            <div class="col-md-10">
+                <input type="text" ng-model="location.country" placeholder="Enter country" class="form-control">
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Zip</label> 
+            <div class="col-md-10">
+                <input type="text" ng-model="location.zip" placeholder="Enter zip" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" ng-click="cancel()">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+    </form>
+</div>
+
